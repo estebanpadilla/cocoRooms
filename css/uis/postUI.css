@@ -1,0 +1,13 @@
+/* Add your amazing style here! */
+.postContainer {
+	height: auto;
+	background-color:antiquewhite;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.repliesContainer {
+	height: auto;
+	background-color:antiquewhite;
+}

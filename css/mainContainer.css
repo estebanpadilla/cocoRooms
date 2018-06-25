@@ -1,0 +1,7 @@
+/* Add your amazing style here! */
+.mainContainer {
+	padding-top: 40px;
+	display: flex;
+	flex-flow: row;
+	justify-content:space-around;
+}

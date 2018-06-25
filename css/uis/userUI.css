@@ -1,0 +1,12 @@
+.userContainer{
+	width: auto;
+	height: auto;
+	background-color:white;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;	
+}
+
+.markAsSelected{
+	background-color:lightgoldenrodyellow;
+}
