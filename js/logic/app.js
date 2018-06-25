@@ -1,10 +1,9 @@
 /**
 * @name App
-* @extends
 * @file app.js
 * @author Esteban Padilla <ep@estebanpadilla.com>
-* @version 1.0.0
 */
+
 class App {
 	constructor() {
 		this.dataManager = new DataManager();

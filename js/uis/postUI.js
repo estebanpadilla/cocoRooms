@@ -11,6 +11,7 @@ class PostUI extends View {
 		super(model, parent, app);
 
 		this.container.className = 'postContainer';
+		this.addReplyUI = null;
 
 		this.top = document.createElement('div');
 		this.repliesContainer = document.createElement('div');
@@ -22,8 +23,8 @@ class PostUI extends View {
 		this.deleteBtn = document.createElement('button');
 
 		this.container.appendChild(this.top);
-		this.container.appendChild(this.bottom);
 		this.container.appendChild(this.repliesContainer);
+		this.container.appendChild(this.bottom);
 		this.top.appendChild(this.titleTxt);
 		this.top.appendChild(this.descriptionTxt);
 		this.bottom.appendChild(this.replyBtn);
@@ -49,10 +50,12 @@ class PostUI extends View {
 		this.model.replies.forEach(reply => {
 			var replyUI = new ReplyUI(reply, this.repliesContainer, this.app);
 		});
+
+		this.addReplyUI = new AddReplyUI(this.model, this.container, this.app);
 	}
 
 	replyBtnClick(e) {
-
+		this.addReplyUI.show();
 	}
 
 	updateBtnClick(e) {
