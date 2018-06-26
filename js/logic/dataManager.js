@@ -16,8 +16,8 @@ class DataManager {
 		this.users = [];
 		this.rooms = [];
 		this.addUsers();
-		this.addRooms();
-
+		// this.addRooms();
+		this.app.netManager.getUsers();
 		this.app.netManager.getRooms();
 	}
 
@@ -92,7 +92,11 @@ class DataManager {
 	}
 
 	updateRoom(value) {
-		this.app.netManager.updateRoom(value);
+		if (value) {
+			this.app.netManager.updateRoom(value);
+		} else {
+			this.app.netManager.updateRoom(this.selectedRoom);
+		}
 	}
 
 	deleteRoom(value) {
@@ -128,30 +132,57 @@ class DataManager {
 			for (let i = 0; i < room.users.length; i++) {
 				if (room.users[i].userName === value.userName) {
 					room.users.splice(i, 1);
-
+					//Send to update room user is removed and is on room
 				}
 			}
 		});
 
-		this.app.navManager.refresh();
+		this.app.netManager.deleteUser(value);
+		// this.app.navManager.refresh();
 	}
 
 	//Post Methods
 	addPost(value) {
-		this.selectedRoom.posts.push(value);
-		this.app.navManager.refresh();
+		if (this.selectedRoom.posts) {
+			value.key = this.selectedRoom.posts.length;
+			this.selectedRoom.posts.push(value);
+			this.app.netManager.updateRoom(this.selectedRoom);
+		} else {
+			value.key = 0;
+			this.selectedRoom.posts = [];
+			this.selectedRoom.posts.push(value);
+			this.app.netManager.updateRoom(this.selectedRoom);
+		}
 	}
 
 	updatePost(value) {
-		this.app.navManager.refresh();
+		this.app.netManager.updateRoom(this.selectedRoom);
 	}
 
 	deletePost(value) {
 		for (let i = 0; i < this.selectedRoom.posts.length; i++) {
 			if (this.selectedRoom.posts[i].key === value.key) {
 				this.selectedRoom.posts.splice(i, 1);
+				this.app.netManager.updateRoom(this.selectedRoom);
 			}
 		}
-		this.app.navManager.refresh();
+	}
+
+	getUserFullName(value) {
+		var fullName = '';
+		this.users.forEach(user => {
+			if (user.key === value) {
+				fullName += user.name + ' ' + user.lastName;
+			}
+		});
+		return fullName;
+	}
+
+	//Method is use to check value(user) agains current user.
+	isMine(value) {
+		if (this.user.key === value) {
+			return true;
+		}
+		return false;
 	}
 }

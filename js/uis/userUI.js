@@ -9,8 +9,12 @@ class UserUI extends View {
 
 	constructor(model, parent, app) {
 		super(model, parent, app);
-
 		this.isInRoom = false;
+
+		this.addUI()
+	}
+
+	addUI() {
 		this.container.className = 'userContainer';
 
 		this.top = document.createElement('div');
@@ -29,8 +33,8 @@ class UserUI extends View {
 		this.bottom.appendChild(this.updateBtn);
 		this.bottom.appendChild(this.deleteBtn);
 
-		this.nameTxt.innerHTML = model.name + ' ' + model.lastName;
-		this.userNameTxt.innerHTML = model.userName;
+		this.nameTxt.innerHTML = this.model.name + ' ' + this.model.lastName;
+		this.userNameTxt.innerHTML = this.model.userName;
 
 		this.addToRoomBtn.innerHTML = 'ADD TO ROOM';
 		this.updateBtn.innerHTML = 'UPDATE';
@@ -46,8 +50,8 @@ class UserUI extends View {
 
 	toogle() {
 		if (this.app.dataManager.selectedRoom.users) {
-			this.app.dataManager.selectedRoom.users.forEach(roomUser => {
-				if (this.model.userName === roomUser.userName) {
+			this.app.dataManager.selectedRoom.users.forEach(key => {
+				if (this.model.key === key) {
 					this.markAsAdded();
 				}
 			});
@@ -55,14 +59,15 @@ class UserUI extends View {
 	}
 
 	addToRoomBtnClick(e) {
-
 		if (this.isInRoom) {
 			this.markAsRemoved();
-			this.app.dataManager.selectedRoom.removeUser(this.model)
+			this.app.dataManager.selectedRoom.removeUser(this.model.key)
 		} else {
-			this.app.dataManager.selectedRoom.addUser(this.model)
+			this.app.dataManager.selectedRoom.addUser(this.model.key)
 			this.markAsAdded();
 		}
+
+		this.app.dataManager.selectedRoom.isChanged = true;
 	}
 
 	updateBtnClick(e) {
@@ -70,10 +75,12 @@ class UserUI extends View {
 	}
 
 	deleteBtnClick(e) {
-		this.app.dataManager.deleteUser(this.model);
-		this.app.navManager.refresh();
+		if (confirm('Are you sure?')) {
+			this.app.dataManager.deleteUser(this.model);
+		}
 	}
 
+	//Room relationship methods
 	markAsRemoved() {
 		this.isInRoom = false;
 		this.container.classList.remove('markAsSelected');

@@ -6,7 +6,8 @@
 * @version 1.0.0
 */
 class User {
-	constructor(name, lastName, userName, password, isAdmin) {
+	constructor(key, name, lastName, userName, password, isAdmin) {
+		this.key = key;
 		this.name = name;
 		this.lastName = lastName;
 		this.userName = userName;

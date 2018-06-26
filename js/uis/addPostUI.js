@@ -48,7 +48,7 @@ class AddPostUI extends View {
 				this.app.dataManager.updatePost(this.model);
 				this.model = null;
 			} else {
-				this.model = new Post('', this.titleTxt.value, this.bodyTxt.value, [], Date.now());
+				this.model = new Post(-1, this.titleTxt.value, this.bodyTxt.value, [], this.app.dataManager.user.key, Date.now());
 				this.app.dataManager.addPost(this.model);
 				this.model = null;
 			}

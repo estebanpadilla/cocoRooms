@@ -49,7 +49,7 @@ class AddRoomUI extends View {
 				this.app.dataManager.updateRoom(this.model);
 				this.model = null;
 			} else {
-				this.model = new Room('--' + this.counter, this.titleTxt.value, this.descriptionTxt.value, [], [], Date.now());
+				this.model = new Room('--' + this.counter, this.titleTxt.value, this.descriptionTxt.value, [], [], Date.now(), this.app.dataManager.user.key);
 				this.app.dataManager.addRoom(this.model);
 				this.model = null;
 				this.counter++;

@@ -39,12 +39,17 @@ class AddReplyUI extends View {
 			alert('Oops, forgot to enter information?')
 		} else {
 
-			var reply = new Reply('key', this.bodyTxt.value, this.app.dataManager.user, Date.now());
-			this.model.replies.push(reply);
+			var reply = new Reply('', this.bodyTxt.value, this.app.dataManager.user.key, Date.now());
+			if (this.model.replies) {
+				reply.key = this.model.replies.length;
+				this.model.replies.push(reply);
+			} else {
+				reply.key = 0;
+				this.model.replies = [];
+				this.model.replies.push(reply);
+			}
+
 			this.app.dataManager.updatePost(this.model);
-			// this.app.dataManager.addReply(reply, this.model);
-			// this.app.navManager.refresh();
-			// this.model = null;
 		}
 	}
 

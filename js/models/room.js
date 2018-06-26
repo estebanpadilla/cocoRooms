@@ -6,40 +6,42 @@
 * @version 1.0.0
 */
 class Room {
-	constructor(key, title, description, posts, users, timestamp) {
+	constructor(key, title, description, posts, users, timestamp, user) {
 		this.key = key;
 		this.title = title;
 		this.description = description;
 		this.posts = posts;
 		this.users = users;
 		this.timestamp = timestamp;
+		this.user = user;
+		this.isChanged = false;
 	}
 
-	addUser(user) {
-		if (!this.isUserInRoom(user)) {
+	addUser(key) {
+		if (!this.isUserInRoom(key)) {
 			if (this.users) {
-				this.users.push(user);
+				this.users.push(key);
 			} else {
 				this.users = [];
-				this.users.push(user);
+				this.users.push(key);
 			}
 		}
 	}
 
-	removeUser(user) {
+	removeUser(key) {
 		for (let i = 0; i < this.users.length; i++) {
-			if (this.users[i].userName === user.userName) {
+			if (this.users[i] === key) {
 				this.users.splice(i, 1);
 			}
 		}
 	}
 
 	//Checks if user is already in the room.
-	isUserInRoom(user) {
+	isUserInRoom(key) {
 		var value = false;
 		if (this.users) {
 			this.users.forEach(userInRoom => {
-				if (user.userName === userInRoom.userName) {
+				if (key === userInRoom) {
 					value = true;
 				}
 			});

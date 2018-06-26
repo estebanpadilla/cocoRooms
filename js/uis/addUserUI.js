@@ -60,7 +60,7 @@ class AddUserUI extends View {
 				this.app.dataManager.updateUser(this.user);
 				this.user = null;
 			} else {
-				var user = new User(this.nameTxt.value, this.lastNameTxt.value, this.userNameTxt.value, this.passwordTxt.value);
+				var user = new User(null, this.nameTxt.value, this.lastNameTxt.value, this.userNameTxt.value, this.passwordTxt.value, this.isAdminChk.checked);
 				this.app.dataManager.addUser(user);
 				this.user = null;
 			}

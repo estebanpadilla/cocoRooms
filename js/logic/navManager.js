@@ -69,6 +69,9 @@ class NavManager {
 	}
 
 	back() {
+		if (this.app.dataManager.selectedRoom && this.app.dataManager.selectedRoom.isChanged) {
+			this.app.dataManager.updateRoom(this.app.dataManager.selectedRoom);
+		}
 		this.goto(this.previous);
 	}
 

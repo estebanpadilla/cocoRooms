@@ -15,6 +15,9 @@ class UsersView extends View {
 	}
 
 	addUI() {
+
+		this.model = this.app.dataManager.users;
+
 		this.container.className = 'usersContainer';
 
 		this.addBtn = document.createElement('button');
