@@ -21,6 +21,7 @@ class AddUserUI extends View {
 		this.lastNameTxt = document.createElement('input');
 		this.userNameTxt = document.createElement('input');
 		this.passwordTxt = document.createElement('input');
+		this.isAdminChk = document.createElement('input');
 		this.okBtn = document.createElement('button');
 		this.cancelBtn = document.createElement('button');
 
@@ -30,6 +31,7 @@ class AddUserUI extends View {
 		this.top.appendChild(this.lastNameTxt);
 		this.top.appendChild(this.userNameTxt);
 		this.top.appendChild(this.passwordTxt);
+		this.top.appendChild(this.isAdminChk);
 		this.bottom.appendChild(this.okBtn);
 		this.bottom.appendChild(this.cancelBtn);
 
@@ -37,6 +39,8 @@ class AddUserUI extends View {
 		this.lastNameTxt.placeholder = 'Last Name';
 		this.userNameTxt.placeholder = 'Username';
 		this.passwordTxt.placeholder = 'Password';
+		this.isAdminChk.type = 'checkbox';
+
 		this.okBtn.innerHTML = 'OK';
 		this.cancelBtn.innerHTML = 'CANCEL';
 
@@ -53,13 +57,11 @@ class AddUserUI extends View {
 				this.user.lastName = this.lastNameTxt.value;
 				this.user.userName = this.userNameTxt.value;
 				this.user.password = this.passwordTxt.value;
-				// this.app.dataManager.updateUser(this.user);
-				this.app.navManager.refresh();
+				this.app.dataManager.updateUser(this.user);
 				this.user = null;
 			} else {
 				var user = new User(this.nameTxt.value, this.lastNameTxt.value, this.userNameTxt.value, this.passwordTxt.value);
 				this.app.dataManager.addUser(user);
-				this.app.navManager.refresh();
 				this.user = null;
 			}
 		}

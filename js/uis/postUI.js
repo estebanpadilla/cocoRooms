@@ -47,11 +47,13 @@ class PostUI extends View {
 	}
 
 	addReplies() {
-		this.model.replies.forEach(reply => {
-			var replyUI = new ReplyUI(reply, this.repliesContainer, this.app);
-		});
+		if (this.model.replies) {
+			this.model.replies.forEach(reply => {
+				var replyUI = new ReplyUI(reply, this.repliesContainer, this.app);
+			});
 
-		this.addReplyUI = new AddReplyUI(this.model, this.container, this.app);
+			this.addReplyUI = new AddReplyUI(this.model, this.container, this.app);
+		}
 	}
 
 	replyBtnClick(e) {
@@ -64,6 +66,5 @@ class PostUI extends View {
 
 	deleteBtnClick(e) {
 		this.app.dataManager.deletePost(this.model);
-		this.app.navManager.refresh();
 	}
 }

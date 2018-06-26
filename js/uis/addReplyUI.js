@@ -41,22 +41,16 @@ class AddReplyUI extends View {
 
 			var reply = new Reply('key', this.bodyTxt.value, this.app.dataManager.user, Date.now());
 			this.model.replies.push(reply);
-			// this.app.dataManager.addReply(this.model);
-			this.app.navManager.refresh();
+			this.app.dataManager.updatePost(this.model);
+			// this.app.dataManager.addReply(reply, this.model);
+			// this.app.navManager.refresh();
 			// this.model = null;
 		}
 	}
 
-
 	cancelBtnClick(e) {
 		this.hide();
 		this.bodyTxt.value = '';
-	}
-
-	updatingPost(value) {
-		// this.show();
-		// this.model = value;
-		// this.bodyTxt.value = this.model.body;
 	}
 
 	//Override methods

@@ -28,9 +28,11 @@ class RoomView extends View {
 	}
 
 	addPosts() {
-		this.model.posts.forEach(post => {
-			var post = new PostUI(post, this.container, this.app);
-		});
+		if (this.model.posts) {
+			this.model.posts.forEach(post => {
+				var post = new PostUI(post, this.container, this.app);
+			});
+		}
 	}
 
 	addBtnClick(e) {

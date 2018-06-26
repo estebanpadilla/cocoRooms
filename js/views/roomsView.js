@@ -32,7 +32,9 @@ class RoomsView extends View {
 
 	addRooms() {
 		this.app.dataManager.rooms.forEach(room => {
-			var roomUI = new RoomUI(room, this.container, this.app);
+			if (room.isUserInRoom(this.app.dataManager.user) || this.app.dataManager.user.isAdmin) {
+				var roomUI = new RoomUI(room, this.container, this.app);
+			}
 		});
 	}
 

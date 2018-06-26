@@ -16,15 +16,13 @@ class Room {
 	}
 
 	addUser(user) {
-		var isInRoom = false;
-		this.users.forEach(userInRoom => {
-			if (user.userName === userInRoom.userName) {
-				isInRoom = true;
+		if (!this.isUserInRoom(user)) {
+			if (this.users) {
+				this.users.push(user);
+			} else {
+				this.users = [];
+				this.users.push(user);
 			}
-		});
-
-		if (!isInRoom) {
-			this.users.push(user);
 		}
 	}
 
@@ -34,5 +32,18 @@ class Room {
 				this.users.splice(i, 1);
 			}
 		}
+	}
+
+	//Checks if user is already in the room.
+	isUserInRoom(user) {
+		var value = false;
+		if (this.users) {
+			this.users.forEach(userInRoom => {
+				if (user.userName === userInRoom.userName) {
+					value = true;
+				}
+			});
+		}
+		return value;
 	}
 }

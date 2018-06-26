@@ -45,11 +45,13 @@ class UserUI extends View {
 	}
 
 	toogle() {
-		this.app.dataManager.selectedRoom.users.forEach(roomUser => {
-			if (this.model.userName === roomUser.userName) {
-				this.markAsAdded();
-			}
-		});
+		if (this.app.dataManager.selectedRoom.users) {
+			this.app.dataManager.selectedRoom.users.forEach(roomUser => {
+				if (this.model.userName === roomUser.userName) {
+					this.markAsAdded();
+				}
+			});
+		}
 	}
 
 	addToRoomBtnClick(e) {

@@ -86,7 +86,7 @@ class NavManager {
 		this.view.updatingUser(value);
 	}
 
-	//User methods
+	//Post methods
 	updatingPost(value) {
 		this.view.updatingPost(value);
 	}

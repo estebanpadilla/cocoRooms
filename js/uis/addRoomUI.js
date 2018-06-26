@@ -46,13 +46,11 @@ class AddRoomUI extends View {
 				this.model.title = this.titleTxt.value;
 				this.model.description = this.descriptionTxt.value;
 				this.model.timestamp = Date.now();
-				// this.app.dataManager.updateRoom(this.room);
-				this.app.navManager.refresh();
+				this.app.dataManager.updateRoom(this.model);
 				this.model = null;
 			} else {
 				this.model = new Room('--' + this.counter, this.titleTxt.value, this.descriptionTxt.value, [], [], Date.now());
 				this.app.dataManager.addRoom(this.model);
-				this.app.navManager.refresh();
 				this.model = null;
 				this.counter++;
 			}
