@@ -14,7 +14,6 @@ class NetManager {
 		this.url = 'https://cocoroom-cr.firebaseio.com/';
 	}
 
-
 	getRoomsCallback(e) {
 		var request = e.target;
 		if (request.readyState == XMLHttpRequest.DONE) {
@@ -44,7 +43,7 @@ class NetManager {
 						}
 					}
 
-					var room = new Room(key, rooms[key].title, rooms[key].description, posts, rooms[key].users, new Date(rooms[key].timestamp), rooms[key].user);
+					var room = new Room(key, rooms[key].title, rooms[key].description, posts, rooms[key].users, new Date(rooms[key].timestamp), rooms[key].user, rooms[key].color);
 					this.app.dataManager.rooms.push(room);
 				}
 
@@ -153,5 +152,14 @@ class NetManager {
 		request.send();
 	}
 
+	updateUser(value) {
+		var request = new XMLHttpRequest();
+		var path = this.url + 'users.json';
+		request.open('PATCH', path, true);
+		request.setRequestHeader('Content-Type', 'application/json;charset=utf-8');
+		request.onreadystatechange = this.usersCallback.bind(this);
+		var user = '{' + JSON.stringify(value.key) + ':' + JSON.stringify(value) + '}';
+		request.send(user);
+	}
 
 }

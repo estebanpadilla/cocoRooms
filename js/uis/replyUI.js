@@ -14,8 +14,6 @@ class ReplyUI extends View {
 
 	addUI() {
 
-		this.container.className = 'replyContainer';
-
 		this.bodyTxt = document.createElement('p');
 		this.userTxt = document.createElement('p');
 		this.timestampTxt = document.createElement('p');
@@ -23,6 +21,11 @@ class ReplyUI extends View {
 		this.container.appendChild(this.bodyTxt);
 		this.container.appendChild(this.userTxt);
 		this.container.appendChild(this.timestampTxt);
+
+		this.bodyTxt.className = 'replyUI_bodyTxt';
+		this.container.className = 'replyContainer';
+		this.userTxt.className = 'userTxt';
+		this.timestampTxt.className = 'timestampTxt';
 
 		this.bodyTxt.innerHTML = this.model.body;
 		this.userTxt.innerHTML = this.app.dataManager.getUserFullName(this.model.user);

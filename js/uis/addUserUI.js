@@ -8,7 +8,6 @@
 class AddUserUI extends View {
 	constructor(model, parent, app) {
 		super(model, parent, app);
-		this.user = null;
 		this.addUI();
 		this.hide();
 	}
@@ -52,24 +51,24 @@ class AddUserUI extends View {
 		if (this.nameTxt.value === '' || this.lastNameTxt.value === '' || this.userNameTxt.value === '' || this.passwordTxt.value === '') {
 			alert('Oops, forgot to enter information?')
 		} else {
-			if (this.user) {
-				this.user.name = this.nameTxt.value;
-				this.user.lastName = this.lastNameTxt.value;
-				this.user.userName = this.userNameTxt.value;
-				this.user.password = this.passwordTxt.value;
-				this.app.dataManager.updateUser(this.user);
-				this.user = null;
+			if (this.model) {
+				this.model.name = this.nameTxt.value;
+				this.model.lastName = this.lastNameTxt.value;
+				this.model.userName = this.userNameTxt.value;
+				this.model.password = this.passwordTxt.value;
+				this.app.dataManager.updateUser(this.model);
+				this.model = null;
 			} else {
-				var user = new User(null, this.nameTxt.value, this.lastNameTxt.value, this.userNameTxt.value, this.passwordTxt.value, this.isAdminChk.checked);
-				this.app.dataManager.addUser(user);
-				this.user = null;
+				this.model = new User(null, this.nameTxt.value, this.lastNameTxt.value, this.userNameTxt.value, this.passwordTxt.value, this.isAdminChk.checked);
+				this.app.dataManager.addUser(this.model);
+				this.model = null;
 			}
 		}
 	}
 
 	cancelBtnClick(e) {
 		this.hide();
-		this.user = null;
+		this.model = null;
 		this.nameTxt.value = '';
 		this.lastNameTxt.value = '';
 		this.userNameTxt.value = '';
@@ -78,11 +77,11 @@ class AddUserUI extends View {
 
 	updatingUser(value) {
 		this.show();
-		this.user = value;
-		this.nameTxt.value = this.user.name;
-		this.lastNameTxt.value = this.user.lastName;
-		this.userNameTxt.value = this.user.userName;
-		this.passwordTxt.value = this.user.password;
+		this.model = value;
+		this.nameTxt.value = this.model.name;
+		this.lastNameTxt.value = this.model.lastName;
+		this.userNameTxt.value = this.model.userName;
+		this.passwordTxt.value = this.model.password;
 	}
 
 	//Override methods

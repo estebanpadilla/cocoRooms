@@ -111,13 +111,7 @@ class DataManager {
 	}
 
 	updateUser(value) {
-		this.users.forEach(user => {
-			if (user.userName === value.userName) {
-				user = value;
-			}
-		});
-
-		this.app.navManager.refresh();
+		this.app.netManager.updateUser(value);
 	}
 
 	deleteUser(value) {

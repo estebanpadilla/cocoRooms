@@ -1,13 +1,13 @@
 /* Add your amazing style here! */
 .postContainer {
 	height: auto;
-	background-color:antiquewhite;
+	background-color:#ccff90;
 	margin-left: 10px;
 	margin-right: 10px;
 	margin-bottom: 10px;
+	border-radius: 5px;
 }
 
 .repliesContainer {
 	height: auto;
-	background-color:antiquewhite;
 }

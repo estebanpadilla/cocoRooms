@@ -16,7 +16,6 @@ class RoomUI extends View {
 	}
 
 	addUI() {
-		this.container.className = 'roomContainer';
 
 		this.top = document.createElement('div');
 		this.bottom = document.createElement('div');
@@ -29,6 +28,7 @@ class RoomUI extends View {
 		this.deleteBtn = document.createElement('button');
 
 		this.container.appendChild(this.top);
+		this.container.style.backgroundColor = this.model.color;
 		this.container.appendChild(this.bottom);
 		this.top.appendChild(this.titleTxt);
 		this.top.appendChild(this.descriptionTxt);
@@ -50,6 +50,10 @@ class RoomUI extends View {
 		this.usersBtn.hidden = !this.app.dataManager.user.isAdmin;
 		this.updateBtn.hidden = !this.app.dataManager.user.isAdmin;
 		this.deleteBtn.hidden = !this.app.dataManager.user.isAdmin;
+
+		this.container.className = 'roomContainer';
+		this.userTxt.className = 'userTxt';
+		this.timestampTxt.className = 'timestampTxt';
 
 		this.top.onclick = this.onclick.bind(this);
 		this.usersBtn.onclick = this.usersBtnClick.bind(this);

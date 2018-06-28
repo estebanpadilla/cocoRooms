@@ -6,7 +6,7 @@
 * @version 1.0.0
 */
 class Room {
-	constructor(key, title, description, posts, users, timestamp, user) {
+	constructor(key, title, description, posts, users, timestamp, user, color) {
 		this.key = key;
 		this.title = title;
 		this.description = description;
@@ -14,6 +14,7 @@ class Room {
 		this.users = users;
 		this.timestamp = timestamp;
 		this.user = user;
+		this.color = color;
 		this.isChanged = false;
 	}
 

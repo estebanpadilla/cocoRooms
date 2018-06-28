@@ -14,7 +14,7 @@ class PostUI extends View {
 	}
 
 	addUI() {
-		this.container.className = 'postContainer';
+
 		this.addReplyUI = null;
 
 		this.top = document.createElement('div');
@@ -44,7 +44,6 @@ class PostUI extends View {
 		this.userTxt.innerHTML = this.app.dataManager.getUserFullName(this.model.user);
 		this.timestampTxt.innerHTML = this.model.timestamp;
 
-		this.repliesContainer.className = 'repliesContainer';
 		this.replyBtn.innerHTML = 'REPLY';
 		this.updateBtn.innerHTML = 'UPDATE';
 		this.deleteBtn.innerHTML = 'DELETE';
@@ -52,6 +51,11 @@ class PostUI extends View {
 		this.replyBtn.onclick = this.replyBtnClick.bind(this);
 		this.updateBtn.onclick = this.updateBtnClick.bind(this);
 		this.deleteBtn.onclick = this.deleteBtnClick.bind(this);
+
+		this.container.className = 'postContainer';
+		this.repliesContainer.className = 'repliesContainer';
+		this.userTxt.className = 'userTxt';
+		this.timestampTxt.className = 'timestampTxt';
 
 		if (!this.app.dataManager.isMine(this.model.user)) {
 			this.updateBtn.hidden = true;

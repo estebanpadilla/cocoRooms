@@ -5,6 +5,7 @@
 * @author Esteban Padilla <ep@estebanpadilla.com>
 * @version 1.0.0
 */
+
 class Post {
 	constructor(key, title, body, replies, user, timestamp) {
 		this.key = key;
