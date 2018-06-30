@@ -16,3 +16,9 @@
 	width: 16px;
 	height: 16px;
 }
+
+.colorBtn:hover {
+	border:solid;
+	border-width: 1px;
+	border-color: white;
+}

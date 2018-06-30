@@ -10,7 +10,7 @@ html, body {
 h1, h2 {
 	padding: 10px 10px 5px 10px;
 	margin: 0;
-	font-size: 14px;
+	font-size: 16px;
 	font-weight: 700;
 }
 
@@ -27,7 +27,7 @@ p {
 pre {
 	padding: 0px 10px 5px 10px;
 	margin: 0;
-	font-size: 13px;
+	font-size: 14px;
 	letter-spacing: .2px;
 	font-weight: 300;
 	white-space: pre-wrap;
@@ -61,7 +61,7 @@ pre {
 }
 
 .userTxt{
-	font-size: 11px;
+	font-size: 13px;
 	color: rgba(0, 0, 0, 0.5);
 	text-align: right;
 	user-select: none;
@@ -69,9 +69,9 @@ pre {
 }
 
 .iconBtn{
-	font-size: 18px;
+	font-size: 20px;
 	color: rgba(0, 0, 0, 0.2);
-	padding: 0px 5px 5px 0px;
+	padding: 0px 5px 10px 0px;
 	user-select: none;
 }
 
