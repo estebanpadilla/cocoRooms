@@ -35,6 +35,7 @@ class ColorsUI extends View {
 		if (!this.isShowing) {
 			this.hide();
 		} else {
+			// this.open();
 			this.show();
 		}
 	}
@@ -42,6 +43,17 @@ class ColorsUI extends View {
 	colorBtnClick(e) {
 		this.toogle();
 		this.callback(e.target.color);
+	}
+
+	open() {
+		this.show();
+		var frames = [
+			// keyframes
+			{ height: '0px' },
+			{ height: '22px' }
+		];
+		var options = { duration: 1000, fill: 'forwards' };
+		this.container.animate(frames, options);
 	}
 }
 

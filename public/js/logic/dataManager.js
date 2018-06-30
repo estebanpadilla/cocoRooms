@@ -15,7 +15,7 @@ class DataManager {
 		this.selectedRoom = null;
 		this.users = [];
 		this.rooms = [];
-		this.addUsers();
+		// this.addUsers();
 		// this.addRooms();
 		this.app.netManager.getUsers();
 		this.app.netManager.getRooms();
@@ -132,5 +132,14 @@ class DataManager {
 			return true;
 		}
 		return false;
+	}
+
+	getRoomByKey(key) {
+		for (let i = 0; i < this.rooms.length; i++) {
+			if (this.rooms[i].key === key) {
+				return this.rooms[i];
+			}
+		}
+		return null;
 	}
 }

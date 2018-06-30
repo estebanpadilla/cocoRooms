@@ -48,7 +48,7 @@ class RoomsView extends View {
 
 	addRooms() {
 		this.app.dataManager.rooms.forEach(room => {
-			if (room.isUserInRoom(this.app.dataManager.user) || this.app.dataManager.user.isAdmin) {
+			if (room.isUserInRoom(this.app.dataManager.user.key) || this.app.dataManager.user.isAdmin) {
 				var roomUI = new RoomUI(room, this.container, this.app);
 			}
 		});
@@ -57,6 +57,7 @@ class RoomsView extends View {
 	addBtnClick(e) {
 		this.scrollToBottom = true;
 		var room = new Room(null, 'Title', 'Description', [], [], Date.now(), this.app.dataManager.user.key, '#cfd8dc');
+		room.addUser(this.app.dataManager.user.key);
 		this.app.dataManager.addRoom(room);
 	}
 

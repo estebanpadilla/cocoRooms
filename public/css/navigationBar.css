@@ -29,4 +29,9 @@
 	float: center;
 	font-size: 14px;
 	user-select: none;
+	width: 80%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+ 
 }

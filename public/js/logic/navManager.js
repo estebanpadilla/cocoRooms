@@ -31,7 +31,14 @@ class NavManager {
 
 	goto(view) {
 
-		this.showBackBtn();
+		if (view == 'login') {
+			this.hideBtn();
+		}
+		else {
+			this.showBackBtn();
+		}
+
+		// this.showBackBtn();
 		this.previous = this.current;
 		this.current = view;
 
@@ -48,12 +55,12 @@ class NavManager {
 				this.app.dataManager.selectedRoom = null;
 				this.view = new RoomsView(null, this.mainContainer, this.app);
 				document.getElementById('navigationBarTitle').innerHTML = 'ROOMS';
-				this.hideBtn();
+
 				break;
 			case 'login':
 				this.view = new LoginView(null, mainContainer, this.app);
 				document.getElementById('navigationBarTitle').innerHTML = 'LOGIN';
-				this.hideBtn();
+
 				break;
 			case 'users':
 				this.view = new UsersView(this.app.dataManager.users, this.mainContainer, this.app);
@@ -65,10 +72,18 @@ class NavManager {
 	}
 
 	back() {
-		if (this.app.dataManager.selectedRoom && this.app.dataManager.selectedRoom.isChanged) {
-			this.app.dataManager.updateRoom(this.app.dataManager.selectedRoom);
+		if (this.current == 'rooms') {
+			if (confirm('Do you want to exit?')) {
+
+				this.goto('login');
+			}
 		}
-		this.goto(this.previous);
+		else {
+			if (this.app.dataManager.selectedRoom && this.app.dataManager.selectedRoom.isChanged) {
+				this.app.dataManager.updateRoom(this.app.dataManager.selectedRoom);
+			}
+			this.goto(this.previous);
+		}
 	}
 
 	refresh() {
@@ -76,12 +91,12 @@ class NavManager {
 	}
 
 	showBackBtn() {
-		this.backBtn.hidden = true;
+		// this.backBtn.hidden = true;
 		this.backBtn.innerHTML = 'arrow_back_ios';
 	}
 
 	hideBtn() {
-		this.backBtn.hidden = false;
+		this.backBtn.hidden = true;
 		this.backBtn.innerHTML = '';
 	}
 
