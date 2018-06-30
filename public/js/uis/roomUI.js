@@ -11,7 +11,6 @@ class RoomUI extends View {
 	*/
 	constructor(model, parent, app) {
 		super(model, parent, app);
-
 		this.addUI();
 	}
 
@@ -32,6 +31,8 @@ class RoomUI extends View {
 		this.container.appendChild(this.top);
 		this.container.style.backgroundColor = this.model.color;
 		this.container.appendChild(this.middle);
+		this.colorsUI = new ColorsUI(null, this.container, this.app, this.changeColor.bind(this));
+		this.colorsUI.hide();
 		this.container.appendChild(this.bottom);
 		this.top.appendChild(this.titleTxt);
 		this.top.appendChild(this.descriptionTxt);
@@ -104,6 +105,11 @@ class RoomUI extends View {
 	}
 
 	colorsBtnClick(e) {
+		this.colorsUI.toogle();
+	}
 
+	changeColor(color) {
+		this.model.color = color;
+		this.app.dataManager.updateRoom(this.model);
 	}
 }
