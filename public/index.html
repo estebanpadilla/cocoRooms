@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome to Firebase Hosting</title>
+
+  <!-- update the version number as needed -->
+  <!-- <script defer src="/__/firebase/5.2.0/firebase-app.js"></script> -->
+  <!-- include only the Firebase features as you need -->
+  <!-- <script defer src="/__/firebase/5.2.0/firebase-auth.js"></script> -->
+  <!-- <script defer src="/__/firebase/5.2.0/firebase-database.js"></script> -->
+  <!-- <script defer src="/__/firebase/5.2.0/firebase-messaging.js"></script> -->
+  <!-- <script defer src="/__/firebase/5.2.0/firebase-storage.js"></script> -->
+  <!-- initialize the SDK after all desired features are loaded -->
+  <!-- <script defer src="/__/firebase/init.js"></script> -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/views/loginView.css">
+  <link rel="stylesheet" href="css/views/roomsView.css">
+  <link rel="stylesheet" href="css/views/roomView.css">
+  <link rel="stylesheet" href="css/views/usersView.css">
+  <link rel="stylesheet" href="css/mainContainer.css">
+  <link rel="stylesheet" href="css/navigationBar.css">
+  <link rel="stylesheet" href="css/uis/postUI.css">
+  <link rel="stylesheet" href="css/uis/roomUI.css">
+  <link rel="stylesheet" href="css/uis/replyUI.css">
+  <link rel="stylesheet" href="css/uis/userUI.css">
+  <link rel="stylesheet" href="css/uis/addPostUI.css">
+  <link rel="stylesheet" href="css/uis/addReplyUI.css">
+  <link rel="stylesheet" href="css/uis/addRoomUI.css">
+  <link rel="stylesheet" href="css/uis/addUserUI.css">
+  <script src="index.js"></script>
+  <script src="js/logic/app.js"></script>
+  <script src="js/logic/navManager.js"></script>
+  <script src="js/logic/dataManager.js"></script>
+  <script src="js/logic/netManager.js"></script>
+  <script src="js/views/view.js"></script>
+  <script src="js/views/roomsView.js"></script>
+  <script src="js/views/roomView.js"></script>
+  <script src="js/views/loginView.js"></script>
+  <script src="js/views/usersView.js"></script>
+  <script src="js/uis/roomUI.js"></script>
+  <script src="js/uis/postUI.js"></script>
+  <script src="js/uis/replyUI.js"></script>
+  <script src="js/uis/userUI.js"></script>
+  <script src="js/uis/addPostUI.js"></script>
+  <script src="js/uis/addReplyUI.js"></script>
+  <script src="js/uis/addRoomUI.js"></script>
+  <script src="js/uis/addUserUI.js"></script>
+  <script src="js/models/user.js"></script>
+  <script src="js/models/room.js"></script>
+  <script src="js/models/post.js"></script>
+  <script src="js/models/reply.js"></script>
+</head>
+
+<body>
+  <div id="navigationBar" class="navigationBar">
+    <i id="backBtn" class="backBtn material-icons">arrow_back_ios</i>
+    <h1 id="navigationBarTitle" class="navigationBarTitle">title</h1>
+  </div>
+  <div id="mainContainer" class="mainContainer">
+    <!-- There will be only one container at the time -->
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+      // // The Firebase SDK is initialized and available here!
+      //
+      // firebase.auth().onAuthStateChanged(user => { });
+      // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+      // firebase.messaging().requestPermission().then(() => { });
+      // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+      //
+      // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+      /*
+      try {
+        let app = firebase.app();
+        let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+        document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+      } catch (e) {
+        console.error(e);
+        document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+      }
+      */
+    });
+  </script>
+</body>
+
+</html>

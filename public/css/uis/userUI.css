@@ -1,10 +1,11 @@
 .userContainer{
 	width: auto;
 	height: auto;
-	background-color:white;
+	background-color:#cfd8dc;
 	margin-left: 10px;
 	margin-right: 10px;
-	margin-bottom: 10px;	
+	margin-bottom: 10px;
+	border-radius: 5px;	
 }
 
 .markAsSelected{

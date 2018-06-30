@@ -15,15 +15,14 @@ class UserUI extends View {
 	}
 
 	addUI() {
-		this.container.className = 'userContainer';
 
 		this.top = document.createElement('div');
 		this.bottom = document.createElement('div');
 		this.nameTxt = document.createElement('h1');
 		this.userNameTxt = document.createElement('p');
-		this.addToRoomBtn = document.createElement('button');
-		this.updateBtn = document.createElement('button');
-		this.deleteBtn = document.createElement('button');
+		this.addToRoomBtn = document.createElement('i');
+		this.updateBtn = document.createElement('i');
+		this.deleteBtn = document.createElement('i');
 
 		this.container.appendChild(this.top);
 		this.container.appendChild(this.bottom);
@@ -36,13 +35,26 @@ class UserUI extends View {
 		this.nameTxt.innerHTML = this.model.name + ' ' + this.model.lastName;
 		this.userNameTxt.innerHTML = this.model.userName;
 
-		this.addToRoomBtn.innerHTML = 'ADD TO ROOM';
-		this.updateBtn.innerHTML = 'UPDATE';
-		this.deleteBtn.innerHTML = 'DELETE';
+		this.updateBtn.innerHTML = 'edit';
+		this.deleteBtn.innerHTML = 'delete';
+
+		this.container.className = 'userContainer';
+		this.bottom.className = 'bottomContainer';
+		this.addToRoomBtn.className = 'material-icons';
+		this.updateBtn.className = 'material-icons';
+		this.deleteBtn.className = 'material-icons';
+
+		this.addToRoomBtn.classList.add('iconBtn');
+		this.updateBtn.classList.add('iconBtn');
+		this.deleteBtn.classList.add('iconBtn');
 
 		this.addToRoomBtn.onclick = this.addToRoomBtnClick.bind(this);
 		this.updateBtn.onclick = this.updateBtnClick.bind(this);
 		this.deleteBtn.onclick = this.deleteBtnClick.bind(this);
+
+		if (this.model.isAdmin) {
+			this.bottom.removeChild(this.deleteBtn);
+		}
 
 		this.markAsRemoved();
 		this.toogle();
@@ -83,13 +95,15 @@ class UserUI extends View {
 	//Room relationship methods
 	markAsRemoved() {
 		this.isInRoom = false;
-		this.container.classList.remove('markAsSelected');
-		this.addToRoomBtn.innerHTML = 'ADD TO ROOM';
+		// this.container.classList.remove('markAsSelected');
+		this.container.style.backgroundColor = '#cfd8dc';
+		this.addToRoomBtn.innerHTML = 'person_add';
 	}
 
 	markAsAdded() {
 		this.isInRoom = true;
-		this.container.classList.add('markAsSelected');
-		this.addToRoomBtn.innerHTML = 'REMOVE TO ROOM';
+		this.container.style.backgroundColor = this.app.dataManager.selectedRoom.color;
+		// this.container.classList.add('markAsSelected');
+		this.addToRoomBtn.innerHTML = 'person';
 	}
 }

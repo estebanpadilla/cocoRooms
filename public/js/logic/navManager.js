@@ -31,8 +31,7 @@ class NavManager {
 
 	goto(view) {
 
-		var isShowingBackBtn = false;
-
+		this.showBackBtn();
 		this.previous = this.current;
 		this.current = view;
 
@@ -49,23 +48,20 @@ class NavManager {
 				this.app.dataManager.selectedRoom = null;
 				this.view = new RoomsView(null, this.mainContainer, this.app);
 				document.getElementById('navigationBarTitle').innerHTML = 'ROOMS';
-				isShowingBackBtn = true;
+				this.hideBtn();
 				break;
 			case 'login':
 				this.view = new LoginView(null, mainContainer, this.app);
 				document.getElementById('navigationBarTitle').innerHTML = 'LOGIN';
-				isShowingBackBtn = true;
+				this.hideBtn();
 				break;
 			case 'users':
 				this.view = new UsersView(this.app.dataManager.users, this.mainContainer, this.app);
 				document.getElementById('navigationBarTitle').innerHTML = 'USERS';
-				isShowingBackBtn = false;
 				break;
 			default:
 				break;
 		}
-
-		document.getElementById('backBtn').hidden = isShowingBackBtn;
 	}
 
 	back() {
@@ -77,6 +73,16 @@ class NavManager {
 
 	refresh() {
 		this.view.refresh();
+	}
+
+	showBackBtn() {
+		this.backBtn.hidden = true;
+		this.backBtn.innerHTML = 'arrow_back_ios';
+	}
+
+	hideBtn() {
+		this.backBtn.hidden = false;
+		this.backBtn.innerHTML = '';
 	}
 
 	//Room methods

@@ -18,47 +18,68 @@ class RoomUI extends View {
 	addUI() {
 
 		this.top = document.createElement('div');
+		this.middle = document.createElement('div');
 		this.bottom = document.createElement('div');
 		this.titleTxt = document.createElement('h1');
-		this.descriptionTxt = document.createElement('p');
+		this.descriptionTxt = document.createElement('pre');
 		this.userTxt = document.createElement('p');
-		this.timestampTxt = document.createElement('p');
-		this.usersBtn = document.createElement('button');
-		this.updateBtn = document.createElement('button');
-		this.deleteBtn = document.createElement('button');
+		this.usersBtn = document.createElement('i');
+		this.updateBtn = document.createElement('i');
+		this.deleteBtn = document.createElement('i');
+		this.colorsBtn = document.createElement('i');
+		this.arrowBtn = document.createElement('i');
 
 		this.container.appendChild(this.top);
 		this.container.style.backgroundColor = this.model.color;
+		this.container.appendChild(this.middle);
 		this.container.appendChild(this.bottom);
 		this.top.appendChild(this.titleTxt);
 		this.top.appendChild(this.descriptionTxt);
-		this.top.appendChild(this.userTxt);
-		this.top.appendChild(this.timestampTxt);
+		this.middle.appendChild(this.userTxt);
 		this.bottom.appendChild(this.usersBtn);
 		this.bottom.appendChild(this.updateBtn);
 		this.bottom.appendChild(this.deleteBtn);
+		this.bottom.appendChild(this.colorsBtn);
+		this.bottom.appendChild(this.arrowBtn);
 
 		this.titleTxt.innerHTML = this.model.title;
 		this.descriptionTxt.innerHTML = this.model.description;
-		this.userTxt.innerHTML = this.app.dataManager.getUserFullName(this.model.user);
-		this.timestampTxt.innerHTML = this.model.timestamp;
-		this.usersBtn.innerHTML = 'USERS';
-		this.updateBtn.innerHTML = 'UPDATE';
-		this.deleteBtn.innerHTML = 'DELETE';
+		this.userTxt.innerHTML = this.app.dataManager.getUserFullName(this.model.user) + ' - ' + this.model.timestamp.toLocaleDateString();
+
+		this.usersBtn.innerHTML = 'group';
+		this.updateBtn.innerHTML = 'edit';
+		this.deleteBtn.innerHTML = 'delete';
+		this.colorsBtn.innerHTML = 'color_lens';
+		this.arrowBtn.innerHTML = 'arrow_forward_ios';
 
 		this.usersBtn.className = 'usersBtn';
 		this.usersBtn.hidden = !this.app.dataManager.user.isAdmin;
 		this.updateBtn.hidden = !this.app.dataManager.user.isAdmin;
+		this.colorsBtn.hidden = !this.app.dataManager.user.isAdmin;
 		this.deleteBtn.hidden = !this.app.dataManager.user.isAdmin;
 
 		this.container.className = 'roomContainer';
+		this.middle.className = 'middleContainer';
+		this.bottom.className = 'bottomContainer';
 		this.userTxt.className = 'userTxt';
-		this.timestampTxt.className = 'timestampTxt';
+		this.usersBtn.className = 'material-icons';
+		this.updateBtn.className = 'material-icons';
+		this.deleteBtn.className = 'material-icons';
+		this.colorsBtn.className = 'material-icons';
+		this.arrowBtn.className = 'material-icons';
+
+		this.usersBtn.classList.add('iconBtn');
+		this.updateBtn.classList.add('iconBtn');
+		this.deleteBtn.classList.add('iconBtn');
+		this.colorsBtn.classList.add('iconBtn');
+		this.arrowBtn.classList.add('iconBtn');
 
 		this.top.onclick = this.onclick.bind(this);
 		this.usersBtn.onclick = this.usersBtnClick.bind(this);
 		this.updateBtn.onclick = this.updateBtnClick.bind(this);
 		this.deleteBtn.onclick = this.deleteBtnClick.bind(this);
+		this.colorsBtn.onclick = this.colorsBtnClick.bind(this);
+		this.arrowBtn.onclick = this.onclick.bind(this);
 	}
 
 	onclick(e) {
@@ -80,5 +101,9 @@ class RoomUI extends View {
 			this.app.dataManager.deleteRoom(this.model);
 			this.app.navManager.refresh();
 		}
+	}
+
+	colorsBtnClick(e) {
+
 	}
 }

@@ -1,0 +1,19 @@
+{
+  "name": "cocorooms",
+  "version": "1.0.0",
+  "description": "A small html project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/estebanpadilla/cocoRooms.git"
+  },
+  "author": "Esteban Padilla",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/estebanpadilla/cocoRooms/issues"
+  },
+  "homepage": "https://github.com/estebanpadilla/cocoRooms#readme"
+}

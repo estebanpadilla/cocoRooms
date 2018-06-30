@@ -14,21 +14,17 @@ class ReplyUI extends View {
 
 	addUI() {
 
-		this.bodyTxt = document.createElement('p');
+		this.bodyTxt = document.createElement('pre');
 		this.userTxt = document.createElement('p');
-		this.timestampTxt = document.createElement('p');
 
 		this.container.appendChild(this.bodyTxt);
 		this.container.appendChild(this.userTxt);
-		this.container.appendChild(this.timestampTxt);
 
 		this.bodyTxt.className = 'replyUI_bodyTxt';
 		this.container.className = 'replyContainer';
 		this.userTxt.className = 'userTxt';
-		this.timestampTxt.className = 'timestampTxt';
 
 		this.bodyTxt.innerHTML = this.model.body;
-		this.userTxt.innerHTML = this.app.dataManager.getUserFullName(this.model.user);
-		this.timestampTxt.innerHTML = this.model.timestamp;
+		this.userTxt.innerHTML = this.app.dataManager.getUserFullName(this.model.user) + ' - ' + this.model.timestamp.toLocaleDateString();
 	}
 }
