@@ -60,7 +60,7 @@ pre {
 }
 
 .userTxt{
-	font-size: 10px;
+	font-size: 11px;
 	color: rgba(0, 0, 0, 0.5);
 	text-align: right;
 	user-select: none;
@@ -68,7 +68,7 @@ pre {
 }
 
 .iconBtn{
-	font-size: 16px;
+	font-size: 18px;
 	color: rgba(0, 0, 0, 0.2);
 	padding: 0px 5px 5px 0px;
 	user-select: none;
