@@ -12,6 +12,8 @@ class NetManager {
 	constructor(app) {
 		this.app = app;
 		this.url = 'https://cocoroom-cr.firebaseio.com/';
+		this.isRegisteringUser = false;
+		this.gotoRooms = false;
 	}
 
 	getRoomsCallback(e) {
@@ -47,7 +49,12 @@ class NetManager {
 					this.app.dataManager.rooms.push(room);
 				}
 
-				this.app.navManager.refresh();
+				if (this.gotoRooms) {
+					this.gotoRooms = false;
+					this.app.navManager.goto('rooms');
+				} else {
+					this.app.navManager.refresh();
+				}
 
 			}
 		}
@@ -111,10 +118,14 @@ class NetManager {
 					this.app.dataManager.users.push(user);
 				}
 
-				this.app.dataManager.user = this.app.dataManager.users[0];
-
-				this.app.navManager.refresh();
-
+				if (this.isRegisteringUser) {
+					this.isRegisteringUser = false;
+					this.app.dataManager.setCurrentUser();
+					this.gotoRooms = true;
+					this.app.netManager.getRooms();
+				} else {
+					this.app.navManager.refresh();
+				}
 			}
 		}
 	}
@@ -124,6 +135,24 @@ class NetManager {
 		request.open('GET', this.url + 'users.json', true);
 		request.onreadystatechange = this.getUsersCallback.bind(this);
 		request.send();
+	}
+
+	registerCallback(e) {
+		var request = e.target;
+		if (request.readyState === XMLHttpRequest.DONE) {
+			if (request.status === 200) {
+				this.getUsers();
+			}
+		}
+	}
+
+	registerUser(value) {
+		this.isRegisteringUser = true;
+		var request = new XMLHttpRequest();
+		request.open('POST', this.url + 'users.json', true);
+		request.setRequestHeader('Content-Type', 'applicaction/json;charset=utf-8');
+		request.onreadystatechange = this.registerCallback.bind(this);
+		request.send(JSON.stringify(value));
 	}
 
 	usersCallback(e) {
@@ -141,7 +170,6 @@ class NetManager {
 		request.setRequestHeader('Content-Type', 'applicaction/json;charset=utf-8');
 		request.onreadystatechange = this.usersCallback.bind(this);
 		request.send(JSON.stringify(value));
-
 	}
 
 	deleteUser(value) {

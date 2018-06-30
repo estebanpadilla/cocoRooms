@@ -22,9 +22,17 @@ class NavManager {
 	}
 
 	init() {
-		if (this.app.dataManager.user) {
+		var timer = window.setTimeout(this.continueInit.bind(this), 1000);
+	}
+
+	continueInit() {
+
+		if (this.app.dataManager.setCurrentUser()) {
+			// User is signed in.
 			this.goto('rooms');
+			this.app.netManager.getRooms();
 		} else {
+			// No user is signed in.
 			this.goto('login');
 		}
 	}
@@ -71,11 +79,19 @@ class NavManager {
 		}
 	}
 
+	signOutCompleted() {
+		// Sign-out successful.
+		this.goto('login');
+		console.log('Sign out OK')
+	}
+
 	back() {
 		if (this.current == 'rooms') {
 			if (confirm('Do you want to exit?')) {
-
-				this.goto('login');
+				firebase.auth().signOut().then(this.signOutCompleted.bind(this)).catch(function (e) {
+					// An error happened.
+					console.log(e.message)
+				});
 			}
 		}
 		else {
@@ -87,7 +103,9 @@ class NavManager {
 	}
 
 	refresh() {
-		this.view.refresh();
+		if (this.view) {
+			this.view.refresh();
+		}
 	}
 
 	showBackBtn() {

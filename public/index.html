@@ -7,14 +7,7 @@
   <title>Welcome to Firebase Hosting</title>
 
   <!-- update the version number as needed -->
-  <!-- <script defer src="/__/firebase/5.2.0/firebase-app.js"></script> -->
-  <!-- include only the Firebase features as you need -->
-  <!-- <script defer src="/__/firebase/5.2.0/firebase-auth.js"></script> -->
-  <!-- <script defer src="/__/firebase/5.2.0/firebase-database.js"></script> -->
-  <!-- <script defer src="/__/firebase/5.2.0/firebase-messaging.js"></script> -->
-  <!-- <script defer src="/__/firebase/5.2.0/firebase-storage.js"></script> -->
-  <!-- initialize the SDK after all desired features are loaded -->
-  <!-- <script defer src="/__/firebase/init.js"></script> -->
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
@@ -60,37 +53,12 @@
 
 <body>
   <div id="navigationBar" class="navigationBar">
-    <i id="backBtn" class="backBtn material-icons">arrow_back_ios</i>
-    <h1 id="navigationBarTitle" class="navigationBarTitle">title</h1>
+    <i id="backBtn" class="backBtn material-icons"></i>
+    <h1 id="navigationBarTitle" class="navigationBarTitle"></h1>
   </div>
   <div id="mainContainer" class="mainContainer">
     <!-- There will be only one container at the time -->
   </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-      // // The Firebase SDK is initialized and available here!
-      //
-      // firebase.auth().onAuthStateChanged(user => { });
-      // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-      // firebase.messaging().requestPermission().then(() => { });
-      // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-      //
-      // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-      /*
-      try {
-        let app = firebase.app();
-        let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-        document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-      } catch (e) {
-        console.error(e);
-        document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-      }
-      */
-    });
-  </script>
 </body>
 
 </html>

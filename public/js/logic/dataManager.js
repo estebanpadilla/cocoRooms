@@ -18,14 +18,18 @@ class DataManager {
 		// this.addUsers();
 		// this.addRooms();
 		this.app.netManager.getUsers();
+		// this.app.netManager.getRooms();
+	}
+
+	requestInitialData() {
+		this.app.netManager.getUsers();
 		this.app.netManager.getRooms();
 	}
 
 	//Temporal data methods
 	addUsers() {
-		var epadilla = new User('Esteban', 'Padilla', 'epadilla', 'epadilla', true);
-
-		this.user = epadilla;
+		// var epadilla = new User('Esteban', 'Padilla', 'epadilla', 'epadilla', true);
+		// this.user = epadilla;
 	}
 
 	validateUser(userName, password) {
@@ -34,7 +38,6 @@ class DataManager {
 			if (user.userName === userName) {
 				this.user = user;
 				value = true;
-
 			}
 		});
 		return value;
@@ -58,10 +61,18 @@ class DataManager {
 	}
 
 	//User Methods
+	registerUser(value) {
+		if (!this.setCurrentUser()) {
+			this.app.netManager.registerUser(value);
+		}
+	}
+
+	registerUserCompleted() {
+
+	}
+
 	addUser(value) {
-		// this.users.push(value);
 		this.app.netManager.postUser(value);
-		// this.app.navManager.refresh();
 	}
 
 	updateUser(value) {
@@ -147,6 +158,19 @@ class DataManager {
 		var pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
 		if (pattern.test(url)) {
 			return true;
+		}
+		return false;
+	}
+
+	setCurrentUser() {
+		var user = firebase.auth().currentUser;
+		if (user) {
+			for (let i = 0; i < this.users.length; i++) {
+				if (this.users[i].userName === user.email) {
+					this.user = this.users[i];
+					return true;
+				}
+			}
 		}
 		return false;
 	}
