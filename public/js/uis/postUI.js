@@ -59,6 +59,7 @@ class PostUI extends View {
 		this.deleteBtn.classList.add('iconBtn');
 
 		this.container.className = 'postContainer';
+		this.middle.className = 'middleContainer';
 		this.repliesContainer.className = 'repliesContainer';
 		this.bottom.className = 'bottomContainer';
 		this.userTxt.className = 'userTxt';

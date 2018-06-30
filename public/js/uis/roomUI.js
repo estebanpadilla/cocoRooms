@@ -12,7 +12,7 @@ class RoomUI extends View {
 	constructor(model, parent, app) {
 		super(model, parent, app);
 		this.addUI();
-		this.isEditing = false;
+		this.isEdited = false;
 	}
 
 	addUI() {
@@ -92,6 +92,12 @@ class RoomUI extends View {
 		this.titleTxt.onfocus = this.onfocus.bind(this);
 		this.descriptionTxt.onfocus = this.onfocus.bind(this);
 		this.descriptionTxt.onpaste = this.onpaste.bind(this);
+		this.titleTxt.onkeydown = this.onkeydown.bind(this);
+		this.descriptionTxt.onkeydown = this.onkeydown.bind(this);
+	}
+
+	onkeydown(e) {
+		this.isEdited = true;
 	}
 
 	onclick(e) {
@@ -125,15 +131,18 @@ class RoomUI extends View {
 	}
 
 	onblur(e) {
-		this.model.title = this.titleTxt.innerHTML;
-		this.model.description = this.descriptionTxt.innerHTML;
-		this.app.dataManager.updateRoom(this.model);
-		e.target.classList.remove('focus');
-		this.isEditing = false;
+
+		if (this.isEdited) {
+			this.model.title = this.titleTxt.innerHTML;
+			this.model.description = this.descriptionTxt.innerHTML;
+			this.app.dataManager.updateRoom(this.model);
+			e.target.classList.remove('focus');
+		}
+
+		this.isEdited = false;
 	}
 
 	onfocus(e) {
-		this.isEditing = true;
 		e.target.classList.add('focus');
 	}
 
