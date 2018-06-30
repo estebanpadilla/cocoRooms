@@ -75,20 +75,16 @@ class RoomUI extends View {
 		this.container.className = 'roomContainer';
 		this.middle.className = 'middleContainer';
 		this.bottom.className = 'bottomContainer';
+		this.userTxt.className = 'userTxt';
 
 		this.titleTxt.onblur = this.onblur.bind(this);
 		this.descriptionTxt.onblur = this.onblur.bind(this);
-		this.userTxt.className = 'userTxt';
 
 		this.titleTxt.onfocus = this.onfocus.bind(this);
 		this.descriptionTxt.onfocus = this.onfocus.bind(this);
 		this.descriptionTxt.onpaste = this.onpaste.bind(this);
 		this.titleTxt.onkeydown = this.onkeydown.bind(this);
 		this.descriptionTxt.onkeydown = this.onkeydown.bind(this);
-	}
-
-	onkeydown(e) {
-		this.isEdited = true;
 	}
 
 	onclick(e) {
@@ -121,6 +117,10 @@ class RoomUI extends View {
 		this.app.dataManager.updateRoom(this.model);
 	}
 
+	onkeydown(e) {
+		this.isEdited = true;
+	}
+
 	onblur(e) {
 
 		if (this.isEdited) {
@@ -145,7 +145,7 @@ class RoomUI extends View {
 		clipboardData = e.clipboardData || window.clipboardData;
 		pastedData = clipboardData.getData('Text');
 
-		if (this.validate(pastedData)) {
+		if (this.app.dataManager.validateURL(pastedData)) {
 			// Stop data actually being pasted into div
 			e.stopPropagation();
 			e.preventDefault();
@@ -157,14 +157,4 @@ class RoomUI extends View {
 			this.descriptionTxt.innerHTML = text;
 		}
 	}
-
-	validate(url) {
-		var pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
-		if (pattern.test(url)) {
-			return true;
-		}
-		return false;
-
-	}
-
 }

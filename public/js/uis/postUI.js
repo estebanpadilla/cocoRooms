@@ -10,7 +10,7 @@ class PostUI extends View {
 	constructor(model, parent, app) {
 		super(model, parent, app);
 		this.addUI();
-
+		this.isEdited = false;
 	}
 
 	addUI() {
@@ -25,7 +25,6 @@ class PostUI extends View {
 		this.descriptionTxt = document.createElement('pre');
 		this.userTxt = document.createElement('p');
 		this.replyBtn = document.createElement('i');
-		this.updateBtn = document.createElement('i');
 		this.deleteBtn = document.createElement('i');
 
 		this.container.appendChild(this.top);
@@ -36,27 +35,26 @@ class PostUI extends View {
 		this.top.appendChild(this.descriptionTxt);
 		this.middle.appendChild(this.userTxt);
 		this.bottom.appendChild(this.replyBtn);
-		this.bottom.appendChild(this.updateBtn);
 		this.bottom.appendChild(this.deleteBtn);
 
 		this.titleTxt.innerHTML = this.model.title;
 		this.descriptionTxt.innerHTML = this.model.body;
 		this.userTxt.innerHTML = this.app.dataManager.getUserFullName(this.model.user) + ' - ' + this.model.timestamp.toLocaleDateString();
 
+		this.titleTxt.contentEditable = this.app.dataManager.isMine(this.model.user);
+		this.descriptionTxt.contentEditable = this.app.dataManager.isMine(this.model.user);;
+
 		this.replyBtn.innerHTML = 'reply';
-		this.updateBtn.innerHTML = 'edit';
-		this.deleteBtn.innerHTML = 'delete';
-
 		this.replyBtn.onclick = this.replyBtnClick.bind(this);
-		this.updateBtn.onclick = this.updateBtnClick.bind(this);
-		this.deleteBtn.onclick = this.deleteBtnClick.bind(this);
-
 		this.replyBtn.className = 'material-icons';
-		this.updateBtn.className = 'material-icons';
-		this.deleteBtn.className = 'material-icons';
 		this.replyBtn.classList.add('iconBtn');
-		this.updateBtn.classList.add('iconBtn');
-		this.deleteBtn.classList.add('iconBtn');
+
+		if (this.app.dataManager.isMine(this.model.user)) {
+			this.deleteBtn.innerHTML = 'delete';
+			this.deleteBtn.onclick = this.deleteBtnClick.bind(this);
+			this.deleteBtn.className = 'material-icons';
+			this.deleteBtn.classList.add('iconBtn');
+		}
 
 		this.container.className = 'postContainer';
 		this.middle.className = 'middleContainer';
@@ -64,10 +62,14 @@ class PostUI extends View {
 		this.bottom.className = 'bottomContainer';
 		this.userTxt.className = 'userTxt';
 
-		if (!this.app.dataManager.isMine(this.model.user)) {
-			this.updateBtn.hidden = true;
-			this.deleteBtn.hidden = true;
-		}
+		this.titleTxt.onblur = this.onblur.bind(this);
+		this.descriptionTxt.onblur = this.onblur.bind(this);
+
+		this.titleTxt.onfocus = this.onfocus.bind(this);
+		this.descriptionTxt.onfocus = this.onfocus.bind(this);
+		this.descriptionTxt.onpaste = this.onpaste.bind(this);
+		this.titleTxt.onkeydown = this.onkeydown.bind(this);
+		this.descriptionTxt.onkeydown = this.onkeydown.bind(this);
 
 		this.addReplies();
 	}
@@ -93,6 +95,47 @@ class PostUI extends View {
 	deleteBtnClick(e) {
 		if (confirm('Are yuo sure?')) {
 			this.app.dataManager.deletePost(this.model);
+		}
+	}
+
+	onkeydown(e) {
+		this.isEdited = true;
+	}
+
+	onblur(e) {
+
+		if (this.isEdited) {
+			this.model.title = this.titleTxt.innerHTML;
+			this.model.body = this.descriptionTxt.innerHTML;
+			this.app.dataManager.updateRoom(this.app.dataManager.selectedRoom);
+			e.target.classList.remove('focus');
+		}
+
+		this.isEdited = false;
+	}
+
+	onfocus(e) {
+		e.target.classList.add('focus');
+	}
+
+	onpaste(e) {
+
+		var clipboardData, pastedData;
+
+		// Get pasted data via clipboard API
+		clipboardData = e.clipboardData || window.clipboardData;
+		pastedData = clipboardData.getData('Text');
+
+		if (this.app.dataManager.validateURL(pastedData)) {
+			// Stop data actually being pasted into div
+			e.stopPropagation();
+			e.preventDefault();
+
+			console.log(pastedData);
+			var text = this.descriptionTxt.innerHTML;
+			this.descriptionTxt.innerHTML = '';
+			text += "<a href=" + pastedData + ' contentEditable="false">' + pastedData + '</a>';
+			this.descriptionTxt.innerHTML = text;
 		}
 	}
 }
