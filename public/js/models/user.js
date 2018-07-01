@@ -11,7 +11,6 @@ class User {
 		this.name = name;
 		this.lastName = lastName;
 		this.userName = userName;
-		this.password = password;
 		this.isAdmin = isAdmin;
 	}
 }

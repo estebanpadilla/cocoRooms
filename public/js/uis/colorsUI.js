@@ -11,7 +11,7 @@ class ColorsUI extends View {
 		super(model, parent, app);
 		this.callback = callback;
 		this.isShowing = false;
-		this.colors = ['#fd8a82', '#fed085', '#fffe94', '#cdfd95', '#aafeeb', '#83d9fd', '#84b3fc', '#b38bfc', '#f7bcd0', '#d7ccc9', '#cfd8dc'];
+		this.colors = ['#fd8a82', '#fed085', '#fffe94', '#cdfd95', '#aafeeb', '#83d9fd', '#84b3fc', '#b38bfc', '#f7bcd0', '#d7ccc9', '#cfd8dc', '#eeeeee'];
 
 		this.addUI();
 

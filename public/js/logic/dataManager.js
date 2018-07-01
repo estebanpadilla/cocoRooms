@@ -75,7 +75,19 @@ class DataManager {
 	}
 
 	addUser(value) {
-		this.app.netManager.postUser(value);
+
+		let isStore = false;
+		for (let i = 0; i < this.users.length; i++) {
+			if (this.users[i].userName === value.userName) {
+				isStore = true;
+			}
+		}
+
+		if (!isStore) {
+			this.app.netManager.postUser(value);
+		} else {
+			alert('User exist!');
+		}
 	}
 
 	updateUser(value) {
@@ -158,11 +170,11 @@ class DataManager {
 	}
 
 	validateURL(url) {
-		var pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
-		if (pattern.test(url)) {
-			return true;
-		}
-		return false;
+		// var pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+		// if (pattern.test(url)) {
+		// 	return true;
+		// }
+		return url.includes('http');
 	}
 
 	setCurrentUser() {

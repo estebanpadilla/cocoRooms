@@ -57,14 +57,14 @@ textarea {
 
 
 h1, h2 {
-	padding: 10px 10px 5px 10px;
+	padding: 15px 15px 5px 15px;
 	margin: 0;
 	font-size: 16px;
 	font-weight: 700;
 }
 
 p {
-	padding: 0px 10px 5px 10px;
+	padding: 0px 15px 5px 15px;
 	margin: 0;
 	font-size: 13px;
 	letter-spacing: .2px;
@@ -74,7 +74,7 @@ p {
 }
 
 pre {
-	padding: 0px 10px 5px 10px;
+	padding: 0px 15px 5px 15px;
 	margin: 0;
 	font-size: 14px;
 	letter-spacing: .2px;
@@ -107,7 +107,7 @@ pre {
 	display:flex;
 	justify-content: flex-end;
 	flex-flow: row; 
-	padding: 0px 10px 10px 0px;
+	padding: 5px 15px 10px 0px;
 }
 
 .userTxt{
