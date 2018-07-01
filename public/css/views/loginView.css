@@ -1,6 +1,13 @@
 /* Add your amazing style here! */
 .loginContainer{
-	width: 400px;
+	/* width: 400px; */
 	/* height: 100%; */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.loginContainerRow {
+	/* width: auto; */
 }
 

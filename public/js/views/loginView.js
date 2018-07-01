@@ -13,15 +13,17 @@ class LoginView extends View {
 	}
 
 	addUI() {
+		this.row = document.createElement('div');
 		this.userNameTxt = document.createElement('input');
 		this.passwordTxt = document.createElement('input');
 		this.loginBtn = document.createElement('button');
 		this.registerBtn = document.createElement('button');
 
-		this.container.appendChild(this.userNameTxt);
-		this.container.appendChild(this.passwordTxt);
-		this.container.appendChild(this.loginBtn);
-		this.container.appendChild(this.registerBtn);
+		this.container.appendChild(this.row);
+		this.row.appendChild(this.userNameTxt);
+		this.row.appendChild(this.passwordTxt);
+		this.row.appendChild(this.loginBtn);
+		this.row.appendChild(this.registerBtn);
 
 		this.userNameTxt.placeholder = 'Username';
 		this.passwordTxt.placeholder = 'Password';
@@ -29,6 +31,8 @@ class LoginView extends View {
 		this.loginBtn.innerText = 'LOGIN';
 		this.registerBtn.innerText = 'REGISTER';
 
+		this.container.className = 'loginContainer';
+		this.row.className = 'loginContainerRow';
 		this.userNameTxt.classList.add('input_border');
 		this.passwordTxt.classList.add('input_border');
 		this.loginBtn.className = 'loginBtn';
