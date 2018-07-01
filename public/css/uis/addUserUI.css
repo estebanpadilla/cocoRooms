@@ -2,7 +2,7 @@
 .addUserContainer{
 	position: fixed;
 	bottom: 0px;
-	background-color: beige;
-	height: 100px;
+	background-color: rgb(219, 219, 219);
+	height:auto;
 	width: 100%;
 }

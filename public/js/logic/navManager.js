@@ -87,7 +87,7 @@ class NavManager {
 
 	back() {
 		if (this.current == 'rooms') {
-			if (confirm('Do you want to exit?')) {
+			if (confirm('Do you want to singout?')) {
 				firebase.auth().signOut().then(this.signOutCompleted.bind(this)).catch(function (e) {
 					// An error happened.
 					console.log(e.message)

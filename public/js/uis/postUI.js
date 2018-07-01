@@ -44,7 +44,7 @@ class PostUI extends View {
 		this.titleTxt.contentEditable = this.app.dataManager.isMine(this.model.user);
 		this.descriptionTxt.contentEditable = this.app.dataManager.isMine(this.model.user);;
 
-		this.replyBtn.innerHTML = 'reply';
+		this.replyBtn.innerHTML = 'comment';
 		this.replyBtn.onclick = this.replyBtnClick.bind(this);
 		this.replyBtn.className = 'material-icons';
 		this.replyBtn.classList.add('iconBtn');
@@ -72,6 +72,9 @@ class PostUI extends View {
 		this.descriptionTxt.onkeydown = this.onkeydown.bind(this);
 
 		this.addReplies();
+
+		this.container.style.backgroundColor = this.app.dataManager.selectedRoom.color;
+
 	}
 
 	addReplies() {
@@ -85,7 +88,8 @@ class PostUI extends View {
 	}
 
 	replyBtnClick(e) {
-		this.addReplyUI.show();
+		// this.addReplyUI.show();
+		this.addReplyUI.toogle();
 	}
 
 	updateBtnClick(e) {

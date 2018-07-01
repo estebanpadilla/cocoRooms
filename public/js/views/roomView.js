@@ -47,7 +47,6 @@ class RoomView extends View {
 		if (this.model.posts) {
 			this.model.posts.forEach(post => {
 				var post = new PostUI(post, this.container, this.app);
-				post.container.style.backgroundColor = this.model.color;
 			});
 		}
 	}

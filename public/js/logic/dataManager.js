@@ -64,6 +64,9 @@ class DataManager {
 	registerUser(value) {
 		if (!this.setCurrentUser()) {
 			this.app.netManager.registerUser(value);
+		} else {
+			this.app.netManager.gotoRooms = true;
+			this.app.netManager.getRooms();
 		}
 	}
 

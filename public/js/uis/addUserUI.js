@@ -18,8 +18,7 @@ class AddUserUI extends View {
 		this.bottom = document.createElement('div');
 		this.nameTxt = document.createElement('input');
 		this.lastNameTxt = document.createElement('input');
-		this.userNameTxt = document.createElement('input');
-		this.passwordTxt = document.createElement('input');
+		this.emailTxt = document.createElement('input');
 		this.isAdminChk = document.createElement('input');
 		this.okBtn = document.createElement('button');
 		this.cancelBtn = document.createElement('button');
@@ -28,38 +27,46 @@ class AddUserUI extends View {
 		this.container.appendChild(this.bottom);
 		this.top.appendChild(this.nameTxt);
 		this.top.appendChild(this.lastNameTxt);
-		this.top.appendChild(this.userNameTxt);
-		this.top.appendChild(this.passwordTxt);
+		this.top.appendChild(this.emailTxt);
 		this.top.appendChild(this.isAdminChk);
 		this.bottom.appendChild(this.okBtn);
 		this.bottom.appendChild(this.cancelBtn);
 
 		this.nameTxt.placeholder = 'Name';
 		this.lastNameTxt.placeholder = 'Last Name';
-		this.userNameTxt.placeholder = 'Username';
-		this.passwordTxt.placeholder = 'Password';
+		this.emailTxt.placeholder = 'Email';
 		this.isAdminChk.type = 'checkbox';
+
+		this.nameTxt.type = 'text';
+		this.lastNameTxt.type = 'text';
+		this.emailTxt.type = 'email';
 
 		this.okBtn.innerHTML = 'OK';
 		this.cancelBtn.innerHTML = 'CANCEL';
+
+		this.nameTxt.className = 'addUser_name';
+		this.lastNameTxt.className = 'addUser_lastName';
+		this.emailTxt.className = 'addUser_email';
+
+		this.okBtn.className = 'okBtn';
+		this.cancelBtn.className = 'cancelBtn';
 
 		this.okBtn.onclick = this.okBtnClick.bind(this);
 		this.cancelBtn.onclick = this.cancelBtnClick.bind(this);
 	}
 
 	okBtnClick(e) {
-		if (this.nameTxt.value === '' || this.lastNameTxt.value === '' || this.userNameTxt.value === '' || this.passwordTxt.value === '') {
+		if (this.nameTxt.value === '' || this.lastNameTxt.value === '' || this.emailTxt.value === '') {
 			alert('Oops, forgot to enter information?')
 		} else {
 			if (this.model) {
 				this.model.name = this.nameTxt.value;
 				this.model.lastName = this.lastNameTxt.value;
-				this.model.userName = this.userNameTxt.value;
-				this.model.password = this.passwordTxt.value;
+				this.model.userName = this.emailTxt.value;
 				this.app.dataManager.updateUser(this.model);
 				this.model = null;
 			} else {
-				this.model = new User(null, this.nameTxt.value, this.lastNameTxt.value, this.userNameTxt.value, this.passwordTxt.value, this.isAdminChk.checked);
+				this.model = new User(null, this.nameTxt.value, this.lastNameTxt.value, this.emailTxt.value, '', this.isAdminChk.checked);
 				this.app.dataManager.addUser(this.model);
 				this.model = null;
 			}
@@ -71,8 +78,7 @@ class AddUserUI extends View {
 		this.model = null;
 		this.nameTxt.value = '';
 		this.lastNameTxt.value = '';
-		this.userNameTxt.value = '';
-		this.passwordTxt.value = '';
+		this.emailTxt.value = '';
 	}
 
 	updatingUser(value) {
@@ -80,8 +86,7 @@ class AddUserUI extends View {
 		this.model = value;
 		this.nameTxt.value = this.model.name;
 		this.lastNameTxt.value = this.model.lastName;
-		this.userNameTxt.value = this.model.userName;
-		this.passwordTxt.value = this.model.password;
+		this.emailTxt.value = this.model.userName;
 	}
 
 	//Override methods

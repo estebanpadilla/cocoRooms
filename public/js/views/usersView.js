@@ -6,9 +6,7 @@
 * @version 1.0.0
 */
 class UsersView extends View {
-	/**
-	* @param {data type} name - description.
-	*/
+
 	constructor(model, parent, app) {
 		super(model, parent, app);
 		this.addUI();
@@ -20,12 +18,16 @@ class UsersView extends View {
 
 		this.container.className = 'usersContainer';
 
-		this.addBtn = document.createElement('button');
-		this.addBtn.className = 'addBtn';
-		this.addBtn.innerHTML = 'ADD';
+		this.addBtn = document.createElement('i');
+		this.addBtn.innerHTML = 'add';
+		this.addBtn.className = 'material-icons';
+		this.addBtn.classList.add('addBtn');
+		this.addBtn.innerHTML = 'add_circle';
 		this.addBtn.onclick = this.addBtnClick.bind(this);
 
-		this.container.appendChild(this.addBtn);
+		if (this.app.dataManager.user.isAdmin) {
+			this.container.appendChild(this.addBtn);
+		}
 
 		this.addUserUI = new AddUserUI(null, this.container, this.app);
 

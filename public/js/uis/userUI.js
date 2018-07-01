@@ -20,6 +20,7 @@ class UserUI extends View {
 		this.bottom = document.createElement('div');
 		this.nameTxt = document.createElement('h1');
 		this.userNameTxt = document.createElement('p');
+
 		this.addToRoomBtn = document.createElement('i');
 		this.updateBtn = document.createElement('i');
 		this.deleteBtn = document.createElement('i');
@@ -52,8 +53,13 @@ class UserUI extends View {
 		this.updateBtn.onclick = this.updateBtnClick.bind(this);
 		this.deleteBtn.onclick = this.deleteBtnClick.bind(this);
 
-		if (this.model.isAdmin) {
+		if (this.app.dataManager.isMine(this.model.key)) {
 			this.bottom.removeChild(this.deleteBtn);
+		} else {
+			if (!this.app.dataManager.user.isAdmin) {
+				this.bottom.removeChild(this.updateBtn);
+				this.bottom.removeChild(this.deleteBtn);
+			}
 		}
 
 		this.markAsRemoved();

@@ -16,29 +16,25 @@ class LoginView extends View {
 		this.userNameTxt = document.createElement('input');
 		this.passwordTxt = document.createElement('input');
 		this.loginBtn = document.createElement('button');
-		this.registerUPBtn = document.createElement('button');
-		this.signOUTBtn = document.createElement('button');
+		this.registerBtn = document.createElement('button');
 
 		this.container.appendChild(this.userNameTxt);
 		this.container.appendChild(this.passwordTxt);
 		this.container.appendChild(this.loginBtn);
-		this.container.appendChild(this.registerUPBtn);
-		this.container.appendChild(this.signOUTBtn);
+		this.container.appendChild(this.registerBtn);
 
 		this.userNameTxt.placeholder = 'Username';
 		this.passwordTxt.placeholder = 'Password';
 		this.passwordTxt.type = 'password';
 		this.loginBtn.innerText = 'LOGIN';
-		this.registerUPBtn.innerText = 'REGISTER';
-		this.signOUTBtn.innerText = 'SIGN OUT';
+		this.registerBtn.innerText = 'REGISTER';
+
+		this.loginBtn.className = 'loginBtn';
+		this.registerBtn.className = 'registerBtn';
 
 		this.loginBtn.onclick = this.loginBtnClick.bind(this);
-		this.registerUPBtn.onclick = this.registerUPBtnClick.bind(this);
-		// this.signOUTBtn.onclick = this.signOUTBtnClick.bind(this);
+		this.registerBtn.onclick = this.registerBtnBtnClick.bind(this);
 
-		// if (this.app.dataManager.setCurrentUser()) {
-		// this.app.navManager.goto('rooms');
-		// }
 	}
 
 	loginBtnClick(e) {
@@ -74,14 +70,16 @@ class LoginView extends View {
 		this.app.dataManager.registerUser(user);
 	}
 
-	registerError() {
-		// console.log(e.message);
-		var email = this.userNameTxt.value;
-		var user = new User(null, '', '', email, '', false);
-		this.app.dataManager.registerUser(user);
+	registerError(e) {
+		console.log(e.message);
+		alert(e.message);
+
+		// var email = this.userNameTxt.value;
+		// var user = new User(null, '', '', email, '', false);
+		// this.app.dataManager.registerUser(user);
 	}
 
-	registerUPBtnClick() {
+	registerBtnBtnClick() {
 		var email = this.userNameTxt.value;
 		var password = this.passwordTxt.value;
 		var auth = firebase.auth();
