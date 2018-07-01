@@ -21,6 +21,7 @@ class PostUI extends View {
 		this.middle = document.createElement('div');
 		this.repliesContainer = document.createElement('div');
 		this.bottom = document.createElement('div');
+		this.iconsContainer = document.createElement('div');
 		this.titleTxt = document.createElement('h1');
 		this.descriptionTxt = document.createElement('pre');
 		this.userTxt = document.createElement('p');
@@ -33,9 +34,11 @@ class PostUI extends View {
 		this.container.appendChild(this.bottom);
 		this.top.appendChild(this.titleTxt);
 		this.top.appendChild(this.descriptionTxt);
-		this.middle.appendChild(this.userTxt);
-		this.bottom.appendChild(this.replyBtn);
-		this.bottom.appendChild(this.deleteBtn);
+		this.bottom.appendChild(this.userTxt);
+		this.bottom.appendChild(this.iconsContainer);
+		this.iconsContainer.appendChild(this.deleteBtn);
+		this.iconsContainer.appendChild(this.replyBtn);
+
 
 		this.titleTxt.innerHTML = this.model.title;
 		this.descriptionTxt.innerHTML = this.model.body;

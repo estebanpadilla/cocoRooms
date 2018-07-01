@@ -20,6 +20,7 @@ class RoomUI extends View {
 		this.top = document.createElement('div');
 		this.middle = document.createElement('div');
 		this.bottom = document.createElement('div');
+		this.iconsContainer = document.createElement('div');
 		this.titleTxt = document.createElement('h1');
 		this.descriptionTxt = document.createElement('pre');
 		this.userTxt = document.createElement('p');
@@ -36,11 +37,13 @@ class RoomUI extends View {
 		this.container.appendChild(this.bottom);
 		this.top.appendChild(this.titleTxt);
 		this.top.appendChild(this.descriptionTxt);
-		this.middle.appendChild(this.userTxt);
-		this.bottom.appendChild(this.usersBtn);
-		this.bottom.appendChild(this.deleteBtn);
-		this.bottom.appendChild(this.colorsBtn);
-		this.bottom.appendChild(this.arrowBtn);
+		this.bottom.appendChild(this.userTxt);
+		this.bottom.appendChild(this.iconsContainer);
+		this.iconsContainer.appendChild(this.arrowBtn);
+		this.iconsContainer.appendChild(this.usersBtn);
+		this.iconsContainer.appendChild(this.deleteBtn);
+		this.iconsContainer.appendChild(this.colorsBtn);
+
 
 		this.titleTxt.innerHTML = this.model.title;
 		this.descriptionTxt.innerHTML = this.model.description;
@@ -75,6 +78,7 @@ class RoomUI extends View {
 		this.container.className = 'roomContainer';
 		this.middle.className = 'middleContainer';
 		this.bottom.className = 'bottomContainer';
+		this.iconsContainer.className = 'iconsContainer';
 		this.userTxt.className = 'userTxt';
 
 		this.titleTxt.onblur = this.onblur.bind(this);

@@ -53,6 +53,10 @@ class AddUserUI extends View {
 
 		this.okBtn.onclick = this.okBtnClick.bind(this);
 		this.cancelBtn.onclick = this.cancelBtnClick.bind(this);
+
+		if (!this.app.dataManager.user.isAdmin) {
+			this.top.removeChild(this.isAdminChk);
+		}
 	}
 
 	okBtnClick(e) {
