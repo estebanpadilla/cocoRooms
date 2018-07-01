@@ -100,7 +100,7 @@ pre {
 	display:flex;
 	justify-content: flex-end;
 	flex-flow: row; 
-	padding-top: 10px;
+	/* padding-top: 10px; */
 }
 
 .bottomContainer{
@@ -110,18 +110,33 @@ pre {
 	padding: 5px 15px 10px 0px;
 }
 
+.bottomContainer_user{
+	display:flex;
+	justify-content:flex-end;
+	flex-flow: row; 
+	padding: 5px 15px 15px 0px;
+}
+
 .userTxt{
 	font-size: 13px;
 	color: rgba(0, 0, 0, 0.5);
 	/* text-align: left; */
 	/* float: left; */
-	user-select: none;
-	pointer-events: none;
 	margin-top: 4px;
+	user-select: none;
 }
 
 .iconsContainer {
-	float: right;
+	/* float: right; */
+	/* user-select: none; */
+	/* pointer-events: none; */
+}
+
+.iconsContainer:hover {
+	/* float: right; */
+	/* color: rebeccapurple; */
+	/* user-select: none; */
+	/* pointer-events: none; */
 }
 
 .iconBtn{
@@ -129,11 +144,13 @@ pre {
 	color: rgba(0, 0, 0, 0.25);
 	padding: 0px 0px 0px 5px;
 	user-select: none;
-	float: right;
+	pointer-events: all;
 }
+
 
 .iconBtn:hover {
 	color: rgba(0, 0, 0, 0.75);
+	pointer-events: all;
 }
 
 .focus {

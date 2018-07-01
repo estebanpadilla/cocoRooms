@@ -36,9 +36,8 @@ class PostUI extends View {
 		this.top.appendChild(this.descriptionTxt);
 		this.bottom.appendChild(this.userTxt);
 		this.bottom.appendChild(this.iconsContainer);
-		this.iconsContainer.appendChild(this.deleteBtn);
 		this.iconsContainer.appendChild(this.replyBtn);
-
+		this.iconsContainer.appendChild(this.deleteBtn);
 
 		this.titleTxt.innerHTML = this.model.title;
 		this.descriptionTxt.innerHTML = this.model.body;

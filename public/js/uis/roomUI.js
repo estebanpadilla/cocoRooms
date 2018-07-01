@@ -39,11 +39,10 @@ class RoomUI extends View {
 		this.top.appendChild(this.descriptionTxt);
 		this.bottom.appendChild(this.userTxt);
 		this.bottom.appendChild(this.iconsContainer);
-		this.iconsContainer.appendChild(this.arrowBtn);
 		this.iconsContainer.appendChild(this.usersBtn);
 		this.iconsContainer.appendChild(this.deleteBtn);
 		this.iconsContainer.appendChild(this.colorsBtn);
-
+		this.iconsContainer.appendChild(this.arrowBtn);
 
 		this.titleTxt.innerHTML = this.model.title;
 		this.descriptionTxt.innerHTML = this.model.description;

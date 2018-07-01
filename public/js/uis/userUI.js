@@ -40,7 +40,7 @@ class UserUI extends View {
 		this.deleteBtn.innerHTML = 'delete';
 
 		this.container.className = 'userContainer';
-		this.bottom.className = 'bottomContainer';
+		this.bottom.className = 'bottomContainer_user';
 		this.addToRoomBtn.className = 'material-icons';
 		this.updateBtn.className = 'material-icons';
 		this.deleteBtn.className = 'material-icons';
