@@ -191,7 +191,6 @@ a {
 	margin-right: 1%;
 	margin-top: 1%;
 	border: none;
-	
 	border-radius: 5px;
 }
 
@@ -199,7 +198,7 @@ a {
 	width: 98%;
 	height: 35px;
 	outline: none;
-	background-color: rgb(87, 107, 218);
+	background-color: rgb(57, 85, 241);
 	color: white;
 	font-weight: 500;
 	box-sizing: border-box;
@@ -207,10 +206,14 @@ a {
 	margin-right: 1%;
 	margin-top: 1%;
 	border: none;
-	
 	border-radius: 5px;
 }
 
+
+.input_border {
+	border: solid;
+	border-color: lightgray;
+}
 
 
 

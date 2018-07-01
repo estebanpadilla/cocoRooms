@@ -29,6 +29,8 @@ class LoginView extends View {
 		this.loginBtn.innerText = 'LOGIN';
 		this.registerBtn.innerText = 'REGISTER';
 
+		this.userNameTxt.classList.add('input_border');
+		this.passwordTxt.classList.add('input_border');
 		this.loginBtn.className = 'loginBtn';
 		this.registerBtn.className = 'registerBtn';
 
