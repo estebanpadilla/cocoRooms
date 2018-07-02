@@ -88,6 +88,10 @@ class RoomUI extends View {
 		this.descriptionTxt.onpaste = this.onpaste.bind(this);
 		this.titleTxt.onkeydown = this.onkeydown.bind(this);
 		this.descriptionTxt.onkeydown = this.onkeydown.bind(this);
+
+		if (!this.model.isUserInRoom(this.app.dataManager.user.key)) {
+			this.iconsContainer.removeChild(this.arrowBtn);
+		}
 	}
 
 	onclick(e) {
